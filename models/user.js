@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  workout: [workoutSchema],
+  workouts: [workoutSchema],
 });
 
 const User = mongoose.model('User', userSchema);
