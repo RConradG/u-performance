@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit the workout</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Edit the workout</h1>
+  <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=put' method='post'>
+    <label for='date'>Date:</label>
+    <input type='date' name='date' id='date'/>
+
+    <label for='muscleGroup'>Muscle Group:</label>
+    <input value='<%= workout.muscleGroup %>' type='text' name='muscleGroup' id='muscleGroup'/>
+    <!-- TODO: Have to create options and ENUMs for muscle group -->
+
+    <label for='exercise'>Exercise:</label>
+    <input value='<%= workout.exercise %>' type='text' name='exercise' id='exercise'/>
+
+    <label for='weight'>Weight:</label>
+    <input value='<%= workout.weight %>'type='text' name='weight' id='weight'/>
+
+    <label for='sets'>Sets:</label>
+    <input value='<%= workout.sets %>'type='text' name='sets' id='sets'/>
+
+    <label for='repGoal'>Rep Goal:</label>
+    <input value='<%= workout.repGoal  %>'type='text' name='repGoal' id='repGoal'/>
+
+    <label for='actualReps'>Actual Reps Performed:</label>
+    <input value='<%= workout.actualReps %>'type='text' name='actualReps' id='actualReps'/>
+
+    <label for='intensity'>Intensity:</label>
+    <input value='<%= workout.intensity %>'type='text' name='intensity' id='intensity'/>
+    <!-- TODO: have to create options/dropdown and Enum for intensity, 1 - 10 -->
+
+    <button type='submit'>Update Workout</button>
+
+  </form>
+</body>
+
+</html>
