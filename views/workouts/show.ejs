@@ -35,5 +35,8 @@
       </li>
   </ul>
   <a href='/users/<%= user._id %>/workouts/<%= workout._id %>/edit'>Edit this workout</a>
+  <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=delete' method='post'>
+    <button type='submit'>Delete Workout</button>
+  </form>
 </body>
 </html>
