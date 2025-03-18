@@ -29,15 +29,31 @@ const formatWorkoutDate = (meal) => {
 /* ----------------------------------- ROUTERS------------------------------------------ */
 // 'starting' endpoint, already here: /users/:userId/workouts 
 
-// GET /users/:userId/workouts/show
-router.get('/show', async (req, res) => {
+router.get('/new', async (req, res) => {
+  try {
+    res.render('workouts/new.ejs');
+  } catch (error) {
+    
+  }
+});
+
+// GET /users/:userId/workouts/:workoutDate/edit
+router.get('/:date/edit', async (req, res) => {
+  res.send("This is where edits happen");
+});
+
+
+
+// GET /users/:userId/workouts/:workoutDate
+router.get('/:date', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
     if (!currentUser) {
       return res.status(404).send('User not found');
     }
-    res.send("this is the where the workouts will be shown");
-    // res.render('workouts/show.ejs');
+    res.render('workouts/show.ejs', {
+      workouts: currentUser.workouts,
+    });
   } catch (error) {
     console.error('Error fetching user', error);
     res.status(500).redirect('/');
@@ -56,15 +72,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/new', async (req, res) => {
-  try {
-    res.render('workouts/new.ejs');
-  } catch (error) {
-    c
-  }
-})
-
-// POST /users/:userId/workouts
+// TODO: need type checking for entryies
+// POST /users/:userId/workouts1
 router.post('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
@@ -73,7 +82,7 @@ router.post('/', async (req, res) => {
     res.redirect(`/users/${currentUser._id}/workouts`)
   } catch (error) {
     printError(error);
-
+    
   }
 });
 
@@ -89,6 +98,7 @@ router.get('/', async (req, res) => {
     printError(error);
   }
 });
+
 
 
 
