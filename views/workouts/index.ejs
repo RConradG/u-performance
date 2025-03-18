@@ -10,8 +10,9 @@
   <h1>Your Workouts</h1>
   <a href='/users/<%= user._id %>/workouts/new'>Add a Workout</a>
   <ul>
-
-    <li></li>
+    <% workouts.forEach((workout)=>{ %>
+      <li>Workout Date: <%= workout.date %></li>
+    <% }); %>
   </ul>
 </body>
 </html>
