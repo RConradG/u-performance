@@ -25,6 +25,25 @@ const formatWorkoutDate = (meal) => {
 
 // TODO: have to formate workouts and workout to display Date only, not time
 
+
+/* ----------------------------------- ROUTERS------------------------------------------ */
+// 'starting' endpoint, already here: /users/:userId/workouts 
+
+// GET /users/:userId/workouts/show
+router.get('/show', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) {
+      return res.status(404).send('User not found');
+    }
+    res.send("this is the where the workouts will be shown");
+    // res.render('workouts/show.ejs');
+  } catch (error) {
+    console.error('Error fetching user', error);
+    res.status(500).redirect('/');
+  }
+});
+
 // GET /users/:userId/workouts
 router.get('/', async (req, res) => {
   try {
@@ -38,7 +57,11 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/new', async (req, res) => {
-  res.render('workouts/new.ejs');
+  try {
+    res.render('workouts/new.ejs');
+  } catch (error) {
+    c
+  }
 })
 
 // POST /users/:userId/workouts
