@@ -37,22 +37,46 @@ router.get('/new', async (req, res) => {
   }
 });
 
-// GET /users/:userId/workouts/:workoutDate/edit
-router.get('/:date/edit', async (req, res) => {
-  res.send("This is where edits happen");
-});
-
-
-
-// GET /users/:userId/workouts/:workoutDate
-router.get('/:date', async (req, res) => {
+// GET /users/:userId/workouts/:workoutId/edit
+router.get('/:workoutId/edit', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    const workoutToEdit = currentUser.workouts.id(req.params.workoutId);
+    res.render('workouts/edit.ejs', {
+      workout: workoutToEdit,
+    });
+  } catch (error) {
+    console.error(error);
+    res.redirect('/');
+  }
+});
+
+// GET /user/:userId/workouts/:workoutId
+router.put('/:workoutId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
+
+    workoutToUpdate.set(req.body);
+    await currentUser.save();
+
+    res.redirect(`/`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).redirect('/');
+  }
+});
+
+// GET /users/:userId/workouts/:workoutId
+router.get('/:workoutId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workout = currentUser.workouts.id(req.params.workoutId);
     if (!currentUser) {
       return res.status(404).send('User not found');
     }
     res.render('workouts/show.ejs', {
-      workouts: currentUser.workouts,
+      workout: workout,
     });
   } catch (error) {
     console.error('Error fetching user', error);
@@ -73,7 +97,7 @@ router.get('/', async (req, res) => {
 });
 
 // TODO: need type checking for entryies
-// POST /users/:userId/workouts1
+// POST /users/:userId/workouts
 router.post('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
@@ -86,18 +110,21 @@ router.post('/', async (req, res) => {
   }
 });
 
-// display workouts in workouts template
-// GET /users/:userId/workouts
-router.get('/', async (req, res) => {
-  try {
-    const currentUser = await User.findById(req.session.user._id);
-    res.render('workouts/index.ejs', {
-      workouts: currentUser.workouts,
-    });
-  } catch (error) {
-    printError(error);
-  }
-});
+// // display workouts in workouts template
+// // GET /users/:userId/workouts
+// router.get('/:workoutId', async (req, res) => {
+//   try {
+//     const currentUser = await User.findById(req.session.user._id);
+//     const workouts = currentUser.workouts;
+//     const workout = workouts.findById(req.params.workout._id);
+
+//     res.render('workouts/index.ejs', {
+//       workout: workout,
+//     });
+//   } catch (error) {
+//     printError(error);
+//   }
+// });
 
 
 
