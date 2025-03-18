@@ -96,6 +96,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+// DELETE /users/:userId/workouts/:workoutId
+router.delete('/:workoutId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workoutToDelete = currentUser.workouts.id(req.params.workoutId);
+
+    workoutToDelete.deleteOne();
+    await currentUser.save();
+
+    res.redirect(`/users/${currentUser._id}/workouts`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).redirect('/');
+
+  }
+});
 // TODO: need type checking for entryies
 // POST /users/:userId/workouts
 router.post('/', async (req, res) => {
