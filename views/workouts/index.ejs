@@ -11,7 +11,9 @@
   <a href='/users/<%= user._id %>/workouts/new'>Add a Workout</a>
   <ul>
     <% workouts.forEach((workout)=>{ %>
-      <li>Workout Date: <%= workout.date %></li>
+      <li>Workout Date: 
+        <a href='/users/<%= user._id %>/workouts/<%= workout.date %>'><%= workout.date %></a>
+      </li>
     <% }); %>
   </ul>
 </body>
