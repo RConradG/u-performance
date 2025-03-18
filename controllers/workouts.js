@@ -9,20 +9,37 @@ const printError = error => {
   res.redirect('/');
 };
 
-// GET /users/:userId/workouts
-router.get('/', (req, res) => {
+const formatWorkoutsDates = (workouts) => {
+  return workouts.map(workout => ({
+    ...workout.toObject(),
+    date: workout.date ? workout.date.toISOString().split('T')[0] : '', // extract YYY-MM-DD
+  }));
+}
 
+const formatWorkoutDate = (meal) => {
+  return {
+    ...workout.toObject(),
+    date: workout.date ? workout.date.toISOString().split('T')[0] : '', // extract YYY-MM-DD
+  };
+};
+
+// TODO: have to formate workouts and workout to display Date only, not time
+
+// GET /users/:userId/workouts
+router.get('/', async (req, res) => {
   try {
-    res.render('workouts/index.ejs');
+    const currentUser = await User.findById(req.session.user._id);
+    res.render('workouts/index.ejs', {
+      workouts: currentUser.workouts
+    });
   } catch (error) {
     printError(error);
   }
 });
 
-// GET /users/:userId/workouts; showing the workout page
 router.get('/new', async (req, res) => {
   res.render('workouts/new.ejs');
-});
+})
 
 // POST /users/:userId/workouts
 router.post('/', async (req, res) => {
@@ -37,6 +54,8 @@ router.post('/', async (req, res) => {
   }
 });
 
+// display workouts in workouts template
+// GET /users/:userId/workouts
 router.get('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
@@ -47,6 +66,7 @@ router.get('/', async (req, res) => {
     printError(error);
   }
 });
+
 
 
 module.exports = router;
