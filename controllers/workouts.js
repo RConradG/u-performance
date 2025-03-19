@@ -5,7 +5,7 @@ const User = require('../models/user.js');
 
 // helper arrow function that prints the caught error
 const printError = error => {
-  console.log(error);
+  console.error(error);
   res.redirect('/');
 };
 
@@ -34,7 +34,7 @@ router.get('/new', async (req, res) => {
     res.render('workouts/new.ejs');
   } catch (error) {
     
-  }
+  };
 });
 
 // GET /users/:userId/workouts/:workoutId/edit
@@ -46,8 +46,7 @@ router.get('/:workoutId/edit', async (req, res) => {
       workout: workoutToEdit,
     });
   } catch (error) {
-    console.error(error);
-    res.redirect('/');
+    printError(error);
   }
 });
 
@@ -60,7 +59,7 @@ router.put('/:workoutId', async (req, res) => {
     workoutToUpdate.set(req.body);
     await currentUser.save();
 
-    res.redirect(`/`);
+    res.redirect(`/users/${currentUser._id}/workouts/${workoutToUpdate._id}`);
   } catch (error) {
     console.error(error);
     res.status(500).redirect('/');
@@ -88,8 +87,9 @@ router.get('/:workoutId', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    const sortedByDateWorkouts = currentUser.workouts.sort( (a, b) => b.date - a.date);
     res.render('workouts/index.ejs', {
-      workouts: currentUser.workouts
+      workouts: sortedByDateWorkouts,
     });
   } catch (error) {
     printError(error);
@@ -117,6 +117,7 @@ router.delete('/:workoutId', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    
     currentUser.workouts.push(req.body);
     await currentUser.save();
     res.redirect(`/users/${currentUser._id}/workouts`)
@@ -125,24 +126,5 @@ router.post('/', async (req, res) => {
     
   }
 });
-
-// // display workouts in workouts template
-// // GET /users/:userId/workouts
-// router.get('/:workoutId', async (req, res) => {
-//   try {
-//     const currentUser = await User.findById(req.session.user._id);
-//     const workouts = currentUser.workouts;
-//     const workout = workouts.findById(req.params.workout._id);
-
-//     res.render('workouts/index.ejs', {
-//       workout: workout,
-//     });
-//   } catch (error) {
-//     printError(error);
-//   }
-// });
-
-
-
 
 module.exports = router;
