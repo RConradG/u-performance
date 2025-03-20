@@ -10,10 +10,21 @@
   <h1>Add a New Workout</h1>
   <form action='/users/<%= user._id %>/workouts' method='post'>
     <label for='date'>Date:</label>
-    <input type='date' name='date' id='date'/>
+    <input type='date' name='date' id='date' required/>
 
     <label for='muscleGroup'>Muscle Group:</label>
-    <input type='text' name='muscleGroup' id='muscleGroup'/>
+    <select name='muscleGroup' id='muscleGroup'>
+      <option value="Chest">Chest</option>
+      <option value="Back">Back</option>
+      <option value="Quads">Quads</option>
+      <option value="Hamstrings">Hamstrings</option>
+      <option value="Calves">Calves</option>
+      <option value="Shoulders">Shoulders</option>
+      <option value="Core">Core</option>
+      <option value="Biceps">Biceps</option>
+      <option value="Triceps">Triceps</option>
+      <option value="Other">Other</option>
+    </select>
     <!-- TODO: Have to create options and ENUMs for muscle group -->
 
     <label for='exercise'>Exercise:</label>
@@ -32,7 +43,14 @@
     <input type='text' name='actualReps' id='actualReps'/>
 
     <label for='intensity'>Intensity:</label>
-    <input type='text' name='intensity' id='intensity'/>
+    <select name='intensity' id='intensity'>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="I'm too lazy to even attempt">I'm too lazy to even attempt</option>
+    </select>
     <!-- TODO: have to create options/dropdown and Enum for intensity, 1 - 10 -->
 
     <button type='submit'>Add Workout</button>
