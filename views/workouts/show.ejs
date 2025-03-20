@@ -15,19 +15,33 @@
 
 <!-- Loop through the exercises and display each one -->
 <h2>Exercises:</h2>
-<ul>
-  <% workout.exercises.forEach(function(exercise) { %>
-    <li>
-      <strong>Muscle Group:</strong> <%= exercise.muscleGroup %><br>
-      <strong>Exercise:</strong> <%= exercise.exercise %><br>
-      <strong>Weight:</strong> <%= exercise.weight %><br>
-      <strong>Sets:</strong> <%= exercise.sets %><br>
-      <strong>Rep Goal:</strong> <%= exercise.repGoal %><br>
-      <strong>Actual Reps:</strong> <%= exercise.actualReps %><br>
-      <strong>Intensity:</strong> <%= exercise.intensity %>
-    </li>
-  <% }); %>
-</ul>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Muscle Group</th>
+      <th>Exercise</th>
+      <th>Weight</th>
+      <th>Sets</th>
+      <th>Rep Goal</th>
+      <th>Actual Reps</th>
+      <th>Intensity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% workout.exercises.forEach(function(exercise) { %>
+      <tr>
+        <td><%= exercise.muscleGroup %></td>
+        <td><%= exercise.exercise %></td>
+        <td><%= exercise.weight %></td>
+        <td><%= exercise.sets %></td>
+        <td><%= exercise.repGoal %></td>
+        <td><%= exercise.actualReps %></td>
+        <td><%= exercise.intensity %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
   <a href='/users/<%= user._id %>/workouts/<%= workout._id %>/edit'>Edit this workout</a>
   <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=delete' method='post'>
     <button type='submit'>Delete Workout</button>

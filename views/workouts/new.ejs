@@ -7,7 +7,14 @@
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Add a New Workout</h1>
+  <form action='/users/<%= user._id %>/workouts' method='post'>
+    <h2>To create a workout, please enter a date first.</h2>
+    <label for='date'>Date:</label>
+    <input type='date' name='date' id='date' required/>
+    <button type='submit'>Create Workout</button>
+  </form>
+  
+  <!-- <h1>Add a New Workout</h1>
   <form action='/users/<%= user._id %>/workouts' method='post'>
     <label for='date'>Date:</label>
     <input type='date' name='date' id='date' required/>
@@ -53,7 +60,7 @@
 
     <button type='submit'>Add Workout</button>
 
-  </form>
+  </form> -->
 </body>
 
 </html>
