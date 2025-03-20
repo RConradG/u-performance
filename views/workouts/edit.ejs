@@ -10,11 +10,17 @@
   <h1>Edit the workout</h1>
   <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=put' method='post'>
     <label for='date'>Date:</label>
-    <input type='date' name='date' id='date'/>
-
+    <input type='date' name='date' id='date' required value="<%= workout.date.toISOString().split('T')[0] %>" />
+    
     <label for='muscleGroup'>Muscle Group:</label>
-    <input value='<%= workout.muscleGroup %>' type='text' name='muscleGroup' id='muscleGroup'/>
-    <!-- TODO: Have to create options and ENUMs for muscle group -->
+    <% const muscleGroups = ["Chest", "Back", "Quads", "Hamstrings", "Calves", "Shoulders", "Core", "Biceps", "Triceps", "Other"]; %>
+    <select name="muscleGroup" id="muscleGroup">
+      <% muscleGroups.forEach(group => { %>
+        <option value="<%= group %>" <%= workout.muscleGroup === group ? 'selected' : '' %>><%= group %></option>
+      <% }); %>
+    </select>
+    
+    </select>
 
     <label for='exercise'>Exercise:</label>
     <input value='<%= workout.exercise %>' type='text' name='exercise' id='exercise'/>
