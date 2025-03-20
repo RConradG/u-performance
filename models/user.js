@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-const workoutSchema= mongoose.Schema({
-  date: {
-    type: Date,
-    required: true,
-  },
+const exerciseSchema = mongoose.Schema({
   muscleGroup: {
     type: String,
     enum: [
@@ -38,6 +34,16 @@ const workoutSchema= mongoose.Schema({
   intensity: {
     type: Number
   },
+  
+});
+
+const workoutSchema = mongoose.Schema({
+  date: {
+    type: Date,
+    required: true,
+  },
+  exercises: [exerciseSchema],
+
 });
 
 const userSchema = mongoose.Schema({

@@ -7,33 +7,27 @@
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Here the details of your workout.</h1>
   <ul>
-      <li>
-        Workout Date: <%= workout.date.toISOString().split('T')[0] %>
-      </li>
-      <li>
-        Muscle Group: <%= workout.muscleGroup %>
-      </li>
-      <li>
-        Exercise: <%= workout.exercise %>
-      </li>
-      <li>
-        Weight: <%= workout.weight %>
-      </li>
-      <li>
-        Sets: <%= workout.sets %>
-      </li>
-      <li>
-        Rep Goal: <%= workout.repGoal %>
-      </li>
-      <li>
-        Actual Reps: <%= workout.actualReps %>
-      </li>
-      <li>
-        Intensity: <%= workout.intensity %>
-      </li>
-  </ul>
+    <li>
+      Workout Date: <%= workout.date.toISOString().split('T')[0] %>
+    </li>
+</ul>
+
+<!-- Loop through the exercises and display each one -->
+<h2>Exercises:</h2>
+<ul>
+  <% workout.exercises.forEach(function(exercise) { %>
+    <li>
+      <strong>Muscle Group:</strong> <%= exercise.muscleGroup %><br>
+      <strong>Exercise:</strong> <%= exercise.exercise %><br>
+      <strong>Weight:</strong> <%= exercise.weight %><br>
+      <strong>Sets:</strong> <%= exercise.sets %><br>
+      <strong>Rep Goal:</strong> <%= exercise.repGoal %><br>
+      <strong>Actual Reps:</strong> <%= exercise.actualReps %><br>
+      <strong>Intensity:</strong> <%= exercise.intensity %>
+    </li>
+  <% }); %>
+</ul>
   <a href='/users/<%= user._id %>/workouts/<%= workout._id %>/edit'>Edit this workout</a>
   <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=delete' method='post'>
     <button type='submit'>Delete Workout</button>

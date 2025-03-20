@@ -12,7 +12,7 @@ body {
 }
 
 .index-body {
-  position: relative;
+  position: fixed;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -52,6 +52,30 @@ body {
   margin: 0 30px 0 30px;
 }
 
+.signin-container,
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.signin-form-container,
+.signup-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: yellow;
+  border-radius: 25px;
+
+}
+
 .auth-links {
   display: flex;
   flex-direction: column;
@@ -61,6 +85,7 @@ body {
   align-items: center;
   height: 100%;
 }
+
 .signup-link,
 .signin-link {
   text-decoration: none;
@@ -91,4 +116,18 @@ body {
 .signin-link:hover {
   background-color: #ffffff;
   color: black;
+}
+
+label {
+  padding: 2px;
+  margin: 10px 0 10px 0;
+}
+
+input{
+  padding: 4px;
+  width: 100%;
+}
+
+button {
+  margin: 1rem
 }
