@@ -10,7 +10,7 @@
   <h1>Here the details of your workout.</h1>
   <ul>
       <li>
-        Workout Date: <%= workout.date %>
+        Workout Date: <%= workout.date.toISOString().split('T')[0] %>
       </li>
       <li>
         Muscle Group: <%= workout.muscleGroup %>
