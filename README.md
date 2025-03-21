@@ -1,4 +1,4 @@
-![Landing Page](/public/resources/pictures/snake-game.png)
+![Landing Page](./public/resources/signup-signin.png)
 # U Performance 
 
 U Performance is a simple application that allows users to journal their fitness journey.
@@ -14,7 +14,7 @@ progress.
 - **Responsive Design**: Optimized for desktop and mobile devices.
 
 
-# Why U Performance?
+# 💪 Why U Performance? 💪
 
 This was a very personal project for me because throughout my life, I have struggled with my weight. I grew up a chubby kid and bigger than most my age. Right after high school,
 I lost 80 lbs in four months, and admittedly, not in the most healthy way. After the initial
@@ -23,7 +23,7 @@ I decided I needed to make a change, so I started weight training and logged my 
 to ensure I stay on track, and logging workouts help tremendously. That's why I created this app.
 This is for anyone who would like to start a fitness journey, whether to lose weight or get in shape, this app will aid in progress tracking.
 
-# Getting Started
+# 🏋️‍♂️ Getting Started 🏋️‍♀️
 
 ### [Here is the link to the app](https://github.com/RConradG/u-performance.git)
 
@@ -32,16 +32,16 @@ This is for anyone who would like to start a fitness journey, whether to lose we
 Once users are signed in, they are brought to the main page that displays created workouts.
 Users can create, add exercises, and delete their workouts from this main page. See the picture below.
 
-![Main Workout Page](./public/resources/signup-signin.png) // insert picture
+![Main Workout Page](./public/resources/workout-page.png)
 
 To add a workout, users must first enter a date, then an initial exercise (see pictures below). There are several input
 fields, which include muscle group, exercise, weight, sets, rep goal, actual reps performed and
 intensity. While exercise, weight, and sets are self-explanatory, the other fields require explanation.
 
 
-![Enter Date Page]() // insert pic
+![Enter Date Page](./public/resources/enter-date.png)
 
-![Add Exercise Page]() // insert pic
+![Add Exercise Page](./public/resources/add-exercise.png)
 
 
 The rep goal field is the number of reps users aim to perform for that particular exercise.
@@ -65,23 +65,25 @@ of reps entered in the rep goal field, the user should enter 5.
 
 ### Here are the resources I researched build the app.
 
-[Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+[CSS Signup Form](https://www.w3schools.com/howto/howto_css_signup_form.asp)
 
-[Drawing on Canvas](https://www.w3schools.com/graphics/canvas_drawing.asp)
+[CSS Opacity](https://www.w3schools.com/cssref/css3_pr_opacity.php)
 
-[Buc-ee's Brisket Picture](https://www.yahoo.com/lifestyle/buc-ees-gas-station-sandwiches-121532566.html)
+[Background Image Opacity](https://coder-coder.com/background-image-opacity/)
 
-[🐍 Snake 🐍 Head Picture](https://avatars.githubusercontent.com/u/20377140?v=4)
+[Blurred Background](https://www.w3schools.com/howto/howto_css_blurred_background.asp)
 
-[What is 🐍 Snake 🐍?](https://www.itsnicethat.com/features/taneli-armanto-the-history-of-snake-design-legacies-230221#:~:text=Snake's%20story%20begins%20long%20before,video%20games%20company%2C%20Gremlin%20Interactive)
+[HTML Tables](https://www.w3schools.com/html/html_tables.asp)
 
-[History of 🐍 Snake 🐍](https://www.coolmathgames.com/blog/the-history-of-snake-the-game)
+[CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
-[🐍 Snake 🐍 Wikipedia](https://en.wikipedia.org/wiki/Snake_(video_game_genre))
+[CSS Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-[Google Fonts](https://fonts.google.com/specimen/Press+Start+2P)
+[Create HTML CSS Cards](https://www.w3schools.com/howto/howto_css_cards.asp)
 
-[Background and Text Colors](https://piktochart.com/tips/retro-80s-color-palette)
+[Help with errors/debugging](chatgpt.com)
+
+[Styling Buttons](https://www.w3schools.com/css/css3_buttons.asp)
 
 # Technologies Used
 
@@ -89,7 +91,6 @@ JavaScript, Embedded JavaScript, HTML, CSS, Node.js, Express.js, MongoDB
 
 # Next Steps
 
-I plan on adding additional features and functionality in the future. I would 
-like to add different food elements for the 🐍 Snake 🐍 to eat and 🐍 Snake 🐍 "heads."
-I would also like to add different game modes, where the velocity of the 🐍 Snake 🐍
-increases as the game mode increases in difficulty.
+I plan on adding additional features and functionality in the future. I would like to add
+progress line graphs to track progress for particular exercises, workout templates, easily
+copy workouts, and links to exercise instructions.
