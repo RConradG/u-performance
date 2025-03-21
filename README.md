@@ -27,7 +27,7 @@ This is for anyone who would like to start a fitness journey, whether to lose we
 
 ### [Here is the link to the app](https://github.com/RConradG/u-performance.git)
 
-### [Here is a link to my planning materials](/snake-browser-game-proposal.pdf)
+### [Here is a link to my planning materials](https://trello.com/invite/b/67d44d5282ae62aeafc06857/ATTI168108b7c4d8ef0dbcee2bc81b11ee7974B15B71/project-2my-workouts-app)
 
 Once users are signed in, they are brought to the main page that displays created workouts.
 Users can create, add exercises, and delete their workouts from this main page. See the picture below.
