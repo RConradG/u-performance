@@ -267,7 +267,6 @@ router.delete('/:workoutId', async (req, res) => {
 
   }
 });
-// TODO: need type checking for entryies
 // POST /users/:userId/workouts
 router.post('/', async (req, res) => {
   try {
