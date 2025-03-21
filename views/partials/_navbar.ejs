@@ -1,4 +1,5 @@
-<link rel='stylesheet' href='../stylesheets/navbar.css'>
+<link rel='stylesheet' href='/stylesheets/navbar.css'>
+<link rel="stylesheet" href="/stylesheets/media-queries.css">
 
 <header>
   <nav class="navbar">
@@ -6,7 +7,7 @@
     <ul class="nav-links">
       <% if (user) { %>
         <li class='authlink'><a href="/users/<%= user._id %>/workouts">Your Workouts</a></li>
-        <li class='authlink'></li><a href="/auth/sign-out">Sign Out</a></li>
+        <li class='authlink'><a href="/auth/sign-out">Sign Out</a></li>
       <% } else { %>
         <li class='authlink'><a href="/auth/sign-in">Sign In</a></li>
         <li class='authlink'><a href="/auth/sign-up">Sign Up</a></li>

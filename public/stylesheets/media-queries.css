@@ -1,0 +1,59 @@
+
+/* Small Devices (Mobile) */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h1, h2 {
+    font-size: 18px;
+  }
+
+  input, button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Medium Devices (Tablets) */
+@media (max-width: 768px) {
+  .container {
+    width: 85%;
+    padding: 20px;
+  }
+
+  h1, h2 {
+    font-size: 22px;
+  }
+
+  input, button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+/* Large Devices (Desktops) */
+@media (min-width: 1024px) {
+  body {
+    padding: 30px;
+  }
+
+  .container {
+    width: 70%;
+    max-width: 900px;
+  }
+
+  h1, h2 {
+    font-size: 28px;
+  }
+
+  input, button {
+    font-size: 18px;
+    padding: 12px;
+  }
+}

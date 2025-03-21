@@ -3,10 +3,7 @@
 }
 
 body {
-  /* background-color: rgb(35, 6, 6); */
-  /* Use a system font; if none are available, use an available sans-serif font */
   font-family: system-ui, sans-serif;
-  /* Ensures full height compatibility across devices */
   min-height: 100dvh;
   margin: 0;
 }
@@ -20,7 +17,7 @@ body {
 } 
 
 .index-body::before {
-  content: "";
+  content: '';
   background-image: url('../resources/landing-page-img.jpg');
   filter: blur(5px);
   -webkit-filter: blur(5px);

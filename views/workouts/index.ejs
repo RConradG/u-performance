@@ -4,19 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Workouts</title>
+  <link rel='stylesheet' href='/stylesheets/index.css'>
+  <link rel="stylesheet" href="/stylesheets/media-queries.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Your Workouts</h1>
-  <a href='/users/<%= user._id %>/workouts/new'>Add a Workout</a>
-  <ul>
-    <% workouts.forEach((workout)=>{ %>
-      <li>Workout Date: 
-        <a href='/users/<%= user._id %>/workouts/<%= workout._id %>'>
-          <%= workout.date.toISOString().split('T')[0] %></a>
-        <a href='/users/<%= user._id %>/workouts/<%= workout._id %>/edit'>Edit this workout</a>
-      </li>
+  <div class='top-info'>
+    <h1>Your Workouts</h1>
+    <p>Click on a workout date to see details</p>
+    <a href='/users/<%= user._id %>/workouts/new' class="add-workout">Add a Workout</a>
+  </div>
+
+  <div class="workouts-container">
+    <% workouts.forEach((workout) => { %>
+      <div class="workout-card">
+        <div class="workout-date">
+          Workout Date: 
+          <a href='/users/<%= user._id %>/workouts/<%= workout._id %>'>
+            <%= workout.date.toISOString().split('T')[0] %>
+          </a>
+        </div>
+        <div class="workout-links">
+          <a href='/users/<%= user._id %>/workouts/<%= workout._id %>/edit'>Edit Workout Date</a>
+          <a href="/users/<%= user._id %>/workouts/<%= workout._id %>/add-exercise">Add Exercise</a>
+          <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=delete' method='post'>
+            <button type='submit'>Delete Workout</button>
+          </form>
+        </div>
+      </div>
     <% }); %>
-  </ul>
+  </div>
 </body>
 </html>

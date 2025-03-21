@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workout Details</title>
-</head>
-<body>
-  <%- include('../partials/_navbar.ejs') %>
-  <ul>
-    <li>
-      Workout Date: <%= workout.date.toISOString().split('T')[0] %>
-    </li>
-</ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Details</title>
+    <link rel="stylesheet" href="/stylesheets/show.css" />
+    <link rel="stylesheet" href="/stylesheets/media-queries.css" />
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <div class="top-info">
+      <h1>Workout Date: <%= workout.date.toISOString().split('T')[0] %></h1>
+      <a href="/users/<%= user._id %>/workouts/<%= workout._id %>/edit">Edit Workout Date</a>
+    </div>
 
-<!-- Loop through the exercises and display each one -->
-<h2>Exercises:</h2>
+    <h2>Exercises:</h2>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Muscle Group</th>
-      <th>Exercise</th>
-      <th>Weight</th>
-      <th>Sets</th>
-      <th>Rep Goal</th>
-      <th>Actual Reps</th>
-      <th>Intensity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% workout.exercises.forEach(function(exercise) { %>
-      <tr>
-        <td><%= exercise.muscleGroup %></td>
-        <td><%= exercise.exercise %></td>
-        <td><%= exercise.weight %></td>
-        <td><%= exercise.sets %></td>
-        <td><%= exercise.repGoal %></td>
-        <td><%= exercise.actualReps %></td>
-        <td><%= exercise.intensity %></td>
-      </tr>
-    <% }); %>
-  </tbody>
-</table>
-  <a href='/users/<%= user._id %>/workouts/<%= workout._id %>/edit'>Edit this workout</a>
-  <form action='/users/<%= user._id %>/workouts/<%= workout._id %>?_method=delete' method='post'>
-    <button type='submit'>Delete Workout</button>
-  </form>
-</body>
+    <table>
+      <thead>
+        <tr>
+          <th>Muscle Group</th>
+          <th>Exercise</th>
+          <th>Weight</th>
+          <th>Sets</th>
+          <th>Rep Goal</th>
+          <th>Actual Reps</th>
+          <th>Intensity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% workout.exercises.forEach(function(exercise) { %>
+        <tr>
+          <td><%= exercise.muscleGroup %></td>
+          <td><%= exercise.exercise %></td>
+          <td><%= exercise.weight %></td>
+          <td><%= exercise.sets %></td>
+          <td><%= exercise.repGoal %></td>
+          <td><%= exercise.actualReps %></td>
+          <td><%= exercise.intensity %></td>
+          <td>
+            <a href="/users/<%= user._id %>/workouts/<%= workout._id %>/exercises/<%= exercise._id %>/edit">Edit</a>
+            <form action="/users/<%= user._id %>/workouts/<%= workout._id %>/exercises/<%= exercise._id %>?_method=delete" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+      <a id='add-ex' href="/users/<%= user._id %>/workouts/<%= workout._id %>/add-exercise">Add Exercise</a>
+
+      <form id='delete-workout'action="/users/<%= user._id %>/workouts/<%= workout._id %>?_method=delete" method="post">
+        <button type="submit">Delete Workout</button>
+      </form>
+  </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Exercise</title>
+  <link rel="stylesheet" href="/stylesheets/navbar.css">
+  <link rel="stylesheet" href="/stylesheets/edit-exercise.css">
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <h1>Edit Exercise</h1>
+  <form action='/users/<%= user._id %>/workouts/<%= workout._id %>/exercises/<%= exercise._id %>?_method=put' method='post'>
+
+    <label for='muscleGroup'>Muscle Group:</label>
+    <% const muscleGroups = ["Chest", "Back", "Quads", "Hamstrings", "Calves", "Shoulders", "Core", "Biceps", "Triceps", "Other"]; %>
+    <select name="muscleGroup" id="muscleGroup" required>
+      <% muscleGroups.forEach(group => { %>
+        <option value="<%= group %>" <%= exercise.muscleGroup === group ? 'selected' : '' %>><%= group %></option>
+      <% }); %>
+    </select>
+
+    <label for='exercise'>Exercise:</label>
+    <input value='<%= exercise.exercise %>' type='text' name='exercise' id='exercise' required/>
+
+    <label for='weight'>Weight:</label>
+    <input value='<%= exercise.weight %>' type='text' name='weight' id='weight' required/>
+
+    <label for='sets'>Sets:</label>
+    <input value='<%= exercise.sets %>' type='text' name='sets' id='sets' required/>
+
+    <label for='repGoal'>Rep Goal:</label>
+    <input value='<%= exercise.repGoal  %>' type='text' name='repGoal' id='repGoal' required/>
+
+    <label for='actualReps'>Actual Reps Performed:</label>
+    <input value='<%= exercise.actualReps %>' type='text' name='actualReps' id='actualReps' required/>
+
+    <label for='intensity'>Intensity:</label>
+    <input value='<%= exercise.intensity %>' type='text' name='intensity' id='intensity' required/>
+
+    <button type='submit'>Update Exercise</button>
+
+  </form>
+
+</body>
+</html>

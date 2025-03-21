@@ -38,7 +38,11 @@ router.get('/new', async (req, res) => {
 router.put('/:workoutId/date', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workout = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     
     workout.date = req.body.date;
 
@@ -56,7 +60,11 @@ router.put('/:workoutId/date', async (req, res) => {
 router.get('/:workoutId/exercises/:exerciseId/edit', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workout = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     const exercise = workout.exercises.id(req.params.exerciseId);
     res.render('workouts/edit-exercise.ejs', {
       user: currentUser,
@@ -73,7 +81,11 @@ router.get('/:workoutId/exercises/:exerciseId/edit', async (req, res) => {
 router.put('/:workoutId/exercises/:exerciseId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     const updatedExercise = {
       muscleGroup: req.body.muscleGroup,
       exercise: req.body.exercise,
@@ -100,7 +112,11 @@ router.put('/:workoutId/exercises/:exerciseId', async (req, res) => {
 router.delete('/:workoutId/exercises/:exerciseId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workout = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     const exerciseToDelete = workout.exercises.id(req.params.exerciseId);
     exerciseToDelete.deleteOne();
     await currentUser.save();
@@ -117,7 +133,11 @@ router.delete('/:workoutId/exercises/:exerciseId', async (req, res) => {
 router.post('/:workoutId/exercises', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workout = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     const newExercise = {
       muscleGroup: req.body.muscleGroup,
       exercise: req.body.exercise,
@@ -144,12 +164,16 @@ router.post('/:workoutId/exercises', async (req, res) => {
 router.get('/:workoutId/edit', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workoutToEdit = currentUser.workouts.id(req.params.workoutId);
+    if (!workoutToEdit) return res.status(404).send("Workout not found");
+
     res.render('workouts/edit.ejs', {
       workout: workoutToEdit,
     });
   } catch (error) {
-    printError(error);
+
   }
 });
 
@@ -157,7 +181,11 @@ router.get('/:workoutId/edit', async (req, res) => {
 router.put('/:workoutId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     const updatedExercise = {
       muscleGroup: req.body.muscleGroup,
       exercise: req.body.exercise,
@@ -186,7 +214,11 @@ router.put('/:workoutId', async (req, res) => {
 router.get('/:workoutId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workout = currentUser.workouts.id(req.params.workoutId);
+    if (!workout) return res.status(404).send("Workout not found");
+
     if (!currentUser) {
       return res.status(404).send('User not found');
     }
@@ -203,6 +235,8 @@ router.get('/:workoutId', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const sortedByDateWorkouts = currentUser.workouts.sort( (a, b) => b.date - a.date);
     res.render('workouts/index.ejs', {
       workouts: sortedByDateWorkouts,
@@ -217,7 +251,11 @@ router.get('/', async (req, res) => {
 router.delete('/:workoutId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
+    if (!currentUser) return res.status(404).send("User not found");
+
     const workoutToDelete = currentUser.workouts.id(req.params.workoutId);
+    if (!workoutToDelete) return res.status(404).send("Workout not found");
+
 
     workoutToDelete.deleteOne();
     await currentUser.save();
@@ -234,7 +272,8 @@ router.delete('/:workoutId', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    
+    if (!currentUser) return res.status(404).send("User not found");
+
     const newWorkout = {
       date: req.body.date,
       exercises: [],
