@@ -34,10 +34,17 @@
     <input value='<%= exercise.repGoal  %>' type='text' name='repGoal' id='repGoal' required/>
 
     <label for='actualReps'>Actual Reps Performed:</label>
-    <input value='<%= exercise.actualReps %>' type='text' name='actualReps' id='actualReps' required/>
+    <input value='<%= exercise.actualReps %>' type='text' name='actualReps' id='actualReps'/>
 
     <label for='intensity'>Intensity:</label>
-    <input value='<%= exercise.intensity %>' type='text' name='intensity' id='intensity' required/>
+    <select name='intensity' id='intensity'>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="I'm too lazy to even attempt">I'm too lazy to even attempt</option>
+    </select>
 
     <button type='submit'>Update Exercise</button>
 
