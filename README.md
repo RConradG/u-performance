@@ -63,7 +63,7 @@ of reps entered in the rep goal field, the user should enter 5.
 
 # Attributions
 
-### Here are the resources I researched build the app.
+### Here are the resources I researched to help build the app.
 
 [CSS Signup Form](https://www.w3schools.com/howto/howto_css_signup_form.asp)
 
