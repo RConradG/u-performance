@@ -84,7 +84,7 @@ router.put('/:workoutId/exercises/:exerciseId', async (req, res) => {
     if (!currentUser) return res.status(404).send("User not found");
 
     const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
-    if (!workout) return res.status(404).send("Workout not found");
+    if (!workoutToUpdate) return res.status(404).send("Workout not found");
 
     const updatedExercise = {
       muscleGroup: req.body.muscleGroup,
