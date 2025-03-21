@@ -14,7 +14,7 @@ progress.
 - **Responsive Design**: Optimized for desktop and mobile devices.
 
 
-# U-Performance
+# Why U Performance?
 
 This was a very personal project for me because throughout my life, I have struggled with my weight. I grew up a chubby kid and bigger than most my age. Right after high school,
 I lost 80 lbs in four months, and admittedly, not in the most healthy way. After the initial
@@ -25,14 +25,14 @@ This is for anyone who would like to start a fitness journey, whether to lose we
 
 # Getting Started
 
-### [Here is the link to the game.](https://rconradg.github.io/snake/)
+### [Here is the link to the app](https://github.com/RConradG/u-performance.git)
 
 ### [Here is a link to my planning materials](/snake-browser-game-proposal.pdf)
 
 Once users are signed in, they are brought to the main page that displays created workouts.
 Users can create, add exercises, and delete their workouts from this main page. See the picture below.
 
-![Main Workout Page]() // insert picture
+![Main Workout Page](./public/resources/signup-signin.png) // insert picture
 
 To add a workout, users must first enter a date, then an initial exercise (see pictures below). There are several input
 fields, which include muscle group, exercise, weight, sets, rep goal, actual reps performed and
