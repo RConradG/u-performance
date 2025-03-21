@@ -96,32 +96,6 @@ router.put('/:workoutId/exercises/:exerciseId', async (req, res) => {
   }
 });
 
-// GET /users/userId/workouts/:workoutId/exercises/:exerciseId
-
-router.get('/:workoutId/exercises/:exerciseId', async (req, res) => {
-  try {
-    const currentUser = await User.findById(req.session.user._id);
-    const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
-    const updatedExercise = {
-      muscleGroup: req.body.muscleGroup,
-      exercise: req.body.exercise,
-      weight: req.body.weight,
-      sets: req.body.sets,
-      repGoal: req.body.repGoal,
-      actualReps: req.body.actualReps,
-      intensity: req.body.intensity,
-    }
-
-    res.render('', {
-      currentUser,
-      workoutToUpdate,
-      updatedExercise,
-    })
-  } catch (error) {
-    
-  }
-});
-
 // DELETE /users/userId/workouts/:workoutId/exercises/:exerciseId
 router.delete('/:workoutId/exercises/:exerciseId', async (req, res) => {
   try {
