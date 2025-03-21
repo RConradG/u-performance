@@ -34,6 +34,111 @@ router.get('/new', async (req, res) => {
   };
 });
 
+// POST /users/:userId/workouts/:workoutId/date
+router.put('/:workoutId/date', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workout = currentUser.workouts.id(req.params.workoutId);
+    
+    workout.date = req.body.date;
+
+    await currentUser.save();
+
+    res.redirect('/');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send();
+  }
+});
+
+
+// GET /users/:userId/workouts/:workoutId/exercises/:exerciseId
+router.get('/:workoutId/exercises/:exerciseId/edit', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workout = currentUser.workouts.id(req.params.workoutId);
+    const exercise = workout.exercises.id(req.params.exerciseId);
+    res.render('workouts/edit-exercise.ejs', {
+      user: currentUser,
+      workout: workout,
+      exercise: exercise,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error editing exercise');
+  }
+}); 
+
+// POST /user/:userId/workouts/:workoutId/exercises/:exerciseId
+router.put('/:workoutId/exercises/:exerciseId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
+    const updatedExercise = {
+      muscleGroup: req.body.muscleGroup,
+      exercise: req.body.exercise,
+      weight: req.body.weight,
+      sets: req.body.sets,
+      repGoal: req.body.repGoal,
+      actualReps: req.body.actualReps,
+      intensity: req.body.intensity,
+    }
+
+    const exerciseToUpdate = workoutToUpdate.exercises.id(req.params.exerciseId);
+
+    exerciseToUpdate.set(updatedExercise);
+    await currentUser.save();
+    res.redirect(`/users/${currentUser._id}/workouts/${workoutToUpdate._id}`);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).redirect('/');
+  }
+});
+
+// GET /users/userId/workouts/:workoutId/exercises/:exerciseId
+
+router.get('/:workoutId/exercises/:exerciseId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workoutToUpdate = currentUser.workouts.id(req.params.workoutId);
+    const updatedExercise = {
+      muscleGroup: req.body.muscleGroup,
+      exercise: req.body.exercise,
+      weight: req.body.weight,
+      sets: req.body.sets,
+      repGoal: req.body.repGoal,
+      actualReps: req.body.actualReps,
+      intensity: req.body.intensity,
+    }
+
+    res.render('', {
+      currentUser,
+      workoutToUpdate,
+      updatedExercise,
+    })
+  } catch (error) {
+    
+  }
+});
+
+// DELETE /users/userId/workouts/:workoutId/exercises/:exerciseId
+router.delete('/:workoutId/exercises/:exerciseId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const workout = currentUser.workouts.id(req.params.workoutId);
+    const exerciseToDelete = workout.exercises.id(req.params.exerciseId);
+    exerciseToDelete.deleteOne();
+    await currentUser.save();
+
+    res.redirect(`/users/${currentUser._id}/workouts/${workout._id}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).redirect('/');
+  }
+});
+
+
 // POST /users/:userId/workouts/:workoutId/add-exercise <- adds exercise
 router.post('/:workoutId/exercises', async (req, res) => {
   try {
@@ -60,6 +165,7 @@ router.post('/:workoutId/exercises', async (req, res) => {
   }
 });
 
+
 // GET /users/:userId/workouts/:workoutId/edit
 router.get('/:workoutId/edit', async (req, res) => {
   try {
@@ -73,7 +179,7 @@ router.get('/:workoutId/edit', async (req, res) => {
   }
 });
 
-// GET /user/:userId/workouts/:workoutId
+// PUT /user/:userId/workouts/:workoutId
 router.put('/:workoutId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
@@ -160,51 +266,17 @@ router.post('/', async (req, res) => {
       exercises: [],
     };
 
-    // Add the new workout to the user's workouts array
     currentUser.workouts.push(newWorkout);
 
-    // Save the user document to persist the new workout
     await currentUser.save();
 
-    // After saving, access the workout's _id
     const workoutId = currentUser.workouts[currentUser.workouts.length - 1]._id;
 
-    // Redirect to the add-exercise page of the newly created workout
     res.redirect(`/users/${currentUser._id}/workouts/${workoutId}/add-exercise`);
   } catch (error) {
     console.error(error);
     res.redirect('/');
   }
 });
-
-
-//------------------------------- code below is OG of above post----------------------------
-// router.post('/', async (req, res) => {
-//   try {
-//     const currentUser = await User.findById(req.session.user._id);
-//     const newExercise = {
-//       muscleGroup: req.body.muscleGroup,
-//       exercise: req.body.exercise,
-//       weight: req.body.weight,
-//       sets: req.body.sets,
-//       repGoal: req.body.repGoal,
-//       actualReps: req.body.actualReps,
-//       intensity: req.body.intensity,
-//     }
-
-//     const newWorkout = {
-//       date: req.body.date,
-//       exercises: newExercise,
-//     }
-
-
-//     currentUser.workouts.push(newWorkout);
-//     await currentUser.save();
-//     res.redirect(`/users/${currentUser._id}/workouts`)
-//   } catch (error) {
-//     printError(error);
-    
-//   }
-// });
 
 module.exports = router;
